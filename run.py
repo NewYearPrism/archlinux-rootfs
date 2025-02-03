@@ -15,9 +15,11 @@ def main():
     mirror = os.environ.get("ARCHLINUX_MIRROR") or "https://geo.mirror.pkgbuild.com"
     zstd_clevel = int(os.environ.get("ZSTD_CLEVEL") or "3")
     logger.info(f"Archlinux mirror: {mirror}")
-    version_url = urllib.parse.urljoin(mirror, "iso/latest/arch/version")
-    r = httpx.get(version_url)
-    version = r.text.strip()
+    version = os.environ.get("ARCHLINUX_ISO_VERSION")
+    if not version:
+        version_url = urllib.parse.urljoin(mirror, "iso/latest/arch/version")
+        r = httpx.get(version_url)
+        version = r.text.strip()
     logger.info(f"Latest ArchISO(x86_64) version: {version}")
     os.makedirs("outputs", exist_ok=True)
     boot_zst_path = Path(f"outputs/archlinux-bootstrap-{version}-x86_64.tar.zst")
