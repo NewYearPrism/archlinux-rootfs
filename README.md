@@ -1,3 +1,5 @@
+Arch has its official project for WSL, see [the Wiki](https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL)
+
 # Arch Linux Rootfs
 Rootfs tarball of [Arch Linux](https://archlinux.org), converted from the [bootstrap tarballs](https://geo.mirror.pkgbuild.com/iso/latest/) by unwraping `root.x86_64/`.
 
